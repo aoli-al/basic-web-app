@@ -4,14 +4,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 type Data = string;
 
 import QueryProcessor from "../../utils/QueryProcessor";
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   console.log(req.url);
-  
-  const query = req.query.q as string;
-  const response = QueryProcessor(query);
 
+  const query = req.query.q as string;
+  const response = await QueryProcessor(query);
   res.status(200).send(response);
 }
