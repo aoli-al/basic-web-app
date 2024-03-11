@@ -4,6 +4,7 @@ First install the app:
 
 ```bash
 npm install
+
 ```
 
 Then, run the development server:
