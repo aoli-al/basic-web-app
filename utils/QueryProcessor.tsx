@@ -9,14 +9,15 @@ export default async function QueryProcessor(query: string): Promise<string> {
     const completion = await openai.chat.completions.create({
     messages: [{ role: "system", content: query +' Can you only include answers in your response.' }],
     model: "gpt-3.5-turbo",
-    }) as any;
+    });
     // const { data: completion, response } = await openai.completions.create({
     //     prompt:  query +' Can you only include answers in your response.',
     //     model: 'gpt-3.5-turbo-instruct',
     //   }).withResponse();
     console.log(completion)
-    let obj = JSON.parse(completion);
-    console.log(obj)
+    // let obj = JSON.parse(completion);
+    // console.log(obj)
     // console.log(completion["choices"])
-    return obj["choices"][0]["message"]["content"];
+    // return obj["choices"][0]["message"]["content"];
+    return completion.choices[0].message.content!.toString();
 }
